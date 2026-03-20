@@ -1,0 +1,45 @@
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 100;
+  src: url(https://web.archive.org/web/20240601130134im_/https://fonts.gstatic.com/s/robotoslab/v34/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjojIWmb2Rm.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 300;
+  src: url(https://web.archive.org/web/20240601130134im_/https://fonts.gstatic.com/s/robotoslab/v34/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjo0oSmb2Rm.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://web.archive.org/web/20240601130134im_/https://fonts.gstatic.com/s/robotoslab/v34/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjojISmb2Rm.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Roboto Slab';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://web.archive.org/web/20240601130134im_/https://fonts.gstatic.com/s/robotoslab/v34/BngbUXZYTXPIvIBgJJSb6s3BzlRRfKOFbvjoa4Omb2Rm.ttf) format('truetype');
+}
+
+/*
+     FILE ARCHIVED ON 13:01:34 Jun 01, 2024 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:58:27 Mar 19, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.814
+  exclusion.robots: 0.028
+  exclusion.robots.policy: 0.014
+  esindex: 0.013
+  cdx.remote: 15.539
+  LoadShardBlock: 113.058 (6)
+  PetaboxLoader3.datanode: 139.484 (8)
+  load_resource: 313.792 (2)
+  PetaboxLoader3.resolve: 204.631 (2)
+*/

@@ -1,0 +1,27 @@
+@font-face {
+  font-family: 'Kaushan Script';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://web.archive.org/web/20240601165523im_/https://fonts.gstatic.com/s/kaushanscript/v18/vm8vdRfvXFLG3OLnsO15WYS5DG74wNc.ttf) format('truetype');
+}
+
+/*
+     FILE ARCHIVED ON 16:55:23 Jun 01, 2024 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:58:27 Mar 19, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.55
+  exclusion.robots: 0.017
+  exclusion.robots.policy: 0.007
+  esindex: 0.009
+  cdx.remote: 9.629
+  LoadShardBlock: 301.626 (6)
+  PetaboxLoader3.datanode: 281.511 (7)
+  load_resource: 589.162
+  PetaboxLoader3.resolve: 528.336
+*/

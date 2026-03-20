@@ -1,0 +1,1094 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AHA Bioconsultants — From Cells to Sales</title>
+    <meta name="description" content="AHA Bioconsultants provides expert consulting in biologics process development, CMC strategy, and manufacturing operations with 50+ years of combined industry experience.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Instrument+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ============================================
+           CSS VARIABLES & RESET
+           ============================================ */
+        :root {
+            --navy-900: #0a1628;
+            --navy-800: #0f2140;
+            --navy-700: #142c54;
+            --navy-600: #1a3a6e;
+            --navy-500: #234d8a;
+            --slate-700: #364152;
+            --slate-400: #94a3b8;
+            --slate-200: #e2e8f0;
+            --slate-100: #f1f5f9;
+            --white: #ffffff;
+            --yellow: #fed136;
+            --yellow-dim: rgba(254, 209, 54, 0.15);
+            --yellow-glow: rgba(254, 209, 54, 0.3);
+            --font-display: 'DM Serif Display', Georgia, serif;
+            --font-body: 'Instrument Sans', -apple-system, sans-serif;
+        }
+
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 80px;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--slate-700);
+            background: var(--white);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* ============================================
+           ANIMATIONS
+           ============================================ */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to   { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to   { opacity: 1; }
+        }
+
+        @keyframes slideRight {
+            from { opacity: 0; transform: translateX(-40px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes accentLine {
+            from { width: 0; }
+            to   { width: 60px; }
+        }
+
+        @keyframes hexFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50%      { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        /* Elements visible by default; JS adds .js-animate to body to enable animation */
+        .js-animate .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .js-animate .animate-on-scroll.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .js-animate .animate-on-scroll {
+                opacity: 1;
+                transform: none;
+            }
+        }
+
+        /* ============================================
+           NAVIGATION
+           ============================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(10, 22, 40, 0.95);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(254, 209, 54, 0.1);
+            transition: background 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .nav.scrolled {
+            background: rgba(10, 22, 40, 0.98);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+
+        .nav__brand {
+            font-family: var(--font-display);
+            font-size: 1.35rem;
+            color: var(--white);
+            letter-spacing: 0.02em;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+
+        .nav__logo {
+            width: 34px;
+            height: 34px;
+            background: var(--yellow);
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nav__logo span {
+            font-family: var(--font-body);
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            color: var(--navy-900);
+            line-height: 1;
+        }
+
+        .nav__links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav__links a {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--slate-200);
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            position: relative;
+            padding: 0.25rem 0;
+            transition: color 0.3s ease;
+        }
+
+        .nav__links a::after {
+            content: '';
+            position: absolute;
+            bottom: -2px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--yellow);
+            transition: width 0.3s ease;
+        }
+
+        .nav__links a:hover {
+            color: var(--yellow);
+        }
+
+        .nav__links a:hover::after {
+            width: 100%;
+        }
+
+        .nav__links .nav__cta {
+            background: var(--yellow);
+            color: var(--navy-900);
+            padding: 0.5rem 1.25rem;
+            font-weight: 700;
+            transition: background 0.3s ease, color 0.3s ease;
+        }
+
+        .nav__links .nav__cta::after {
+            display: none;
+        }
+
+        .nav__links .nav__cta:hover {
+            background: var(--white);
+            color: var(--navy-900);
+        }
+
+        .nav__toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+        }
+
+        .nav__toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--white);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        /* ============================================
+           HERO
+           ============================================ */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 40%, var(--navy-700) 100%);
+            overflow: hidden;
+        }
+
+        /* Hexagonal background texture */
+        .hero__texture {
+            position: absolute;
+            inset: 0;
+            opacity: 0.07;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23fed136' fill-opacity='1'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        /* Floating hex decorations */
+        .hero__hex {
+            position: absolute;
+            width: 120px;
+            height: 120px;
+            border: 1px solid rgba(254, 209, 54, 0.12);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            animation: hexFloat 8s ease-in-out infinite;
+        }
+
+        .hero__hex--1 {
+            top: 15%;
+            right: 10%;
+            animation-delay: 0s;
+        }
+
+        .hero__hex--2 {
+            bottom: 20%;
+            right: 20%;
+            width: 80px;
+            height: 80px;
+            animation-delay: -3s;
+        }
+
+        .hero__hex--3 {
+            top: 40%;
+            right: 5%;
+            width: 50px;
+            height: 50px;
+            border-color: rgba(254, 209, 54, 0.08);
+            animation-delay: -5s;
+        }
+
+        /* Gradient glow */
+        .hero__glow {
+            position: absolute;
+            top: 50%;
+            right: 15%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(254, 209, 54, 0.06) 0%, transparent 70%);
+            transform: translate(50%, -50%);
+            pointer-events: none;
+        }
+
+        .hero__content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            padding-top: 72px;
+        }
+
+        .hero__label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 2rem;
+            animation: fadeUp 0.8s ease both;
+            animation-delay: 0.2s;
+        }
+
+        .hero__heading {
+            font-family: var(--font-display);
+            font-size: clamp(3.5rem, 8vw, 6.5rem);
+            font-weight: 400;
+            color: var(--white);
+            line-height: 1.05;
+            margin-bottom: 1.5rem;
+            animation: fadeUp 0.8s ease both;
+            animation-delay: 0.4s;
+        }
+
+        .hero__heading em {
+            font-style: italic;
+            color: var(--yellow);
+        }
+
+        .hero__sub {
+            font-size: 1.15rem;
+            color: var(--slate-400);
+            max-width: 520px;
+            line-height: 1.7;
+            margin-bottom: 2.5rem;
+            animation: fadeUp 0.8s ease both;
+            animation-delay: 0.6s;
+        }
+
+        .hero__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--yellow);
+            color: var(--navy-900);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 1rem 2.25rem;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeUp 0.8s ease both;
+            animation-delay: 0.8s;
+        }
+
+        .hero__cta:hover {
+            background: var(--white);
+            box-shadow: 0 8px 30px rgba(254, 209, 54, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .hero__cta svg {
+            transition: transform 0.3s ease;
+        }
+
+        .hero__cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        .hero__buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            animation: fadeUp 0.8s ease both;
+            animation-delay: 0.8s;
+        }
+
+        .hero__cta--secondary {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: transparent;
+            color: var(--white);
+            font-weight: 700;
+            font-size: 0.85rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            padding: 1rem 2.25rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .hero__cta--secondary:hover {
+            border-color: var(--yellow);
+            color: var(--yellow);
+        }
+
+        /* Lab image banner */
+        .hero-banner {
+            position: relative;
+            height: 280px;
+            overflow: hidden;
+        }
+
+        .hero-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center 40%;
+        }
+
+        .hero-banner::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                to bottom,
+                var(--navy-900) 0%,
+                rgba(10, 22, 40, 0.4) 30%,
+                rgba(10, 22, 40, 0.2) 70%,
+                var(--slate-100) 100%
+            );
+        }
+
+        @media (max-width: 768px) {
+            .hero-banner {
+                height: 180px;
+            }
+        }
+
+        /* ============================================
+           SECTION SHARED
+           ============================================ */
+        .section {
+            padding: 7rem 2rem;
+        }
+
+        .section__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section__label {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.75rem;
+            font-weight: 700;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            margin-bottom: 1rem;
+        }
+
+        .section__label::before {
+            content: '';
+            display: block;
+            width: 30px;
+            height: 2px;
+            background: var(--yellow);
+        }
+
+        .section__heading {
+            font-family: var(--font-display);
+            font-size: clamp(2.2rem, 4vw, 3.2rem);
+            color: var(--navy-900);
+            line-height: 1.15;
+            margin-bottom: 1rem;
+        }
+
+        .section__sub {
+            font-size: 1.05rem;
+            color: var(--slate-400);
+            max-width: 600px;
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           SERVICES
+           ============================================ */
+        .services {
+            background: var(--slate-100);
+            position: relative;
+        }
+
+        .services__header {
+            margin-bottom: 4rem;
+        }
+
+        .services__grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border: 1px solid var(--slate-200);
+            border-top: 3px solid var(--yellow);
+            position: relative;
+            transition: all 0.4s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(10, 22, 40, 0.08);
+            border-top-color: var(--navy-700);
+        }
+
+        .service-card__icon {
+            width: 56px;
+            height: 56px;
+            background: var(--yellow-dim);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+
+        .service-card__icon svg {
+            width: 24px;
+            height: 24px;
+            color: var(--navy-700);
+        }
+
+        .service-card__title {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--navy-900);
+            margin-bottom: 1rem;
+            line-height: 1.3;
+        }
+
+        .service-card__text {
+            font-size: 0.95rem;
+            color: var(--slate-400);
+            line-height: 1.7;
+        }
+
+        /* ============================================
+           TEAM
+           ============================================ */
+        .team {
+            background: var(--white);
+        }
+
+        .team__header {
+            margin-bottom: 4rem;
+        }
+
+        .team__grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+        }
+
+        .team-card {
+            display: grid;
+            grid-template-columns: 200px 1fr;
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .team-card__photo-wrap {
+            position: relative;
+        }
+
+        .team-card__photo-wrap::before {
+            content: '';
+            position: absolute;
+            top: -8px;
+            left: -8px;
+            right: 8px;
+            bottom: 8px;
+            border: 2px solid var(--yellow);
+            z-index: 0;
+        }
+
+        .team-card__photo {
+            position: relative;
+            z-index: 1;
+            width: 200px;
+            height: 220px;
+            object-fit: cover;
+            filter: grayscale(20%);
+            transition: filter 0.4s ease;
+        }
+
+        .team-card:hover .team-card__photo {
+            filter: grayscale(0%);
+        }
+
+        .team-card__name {
+            font-family: var(--font-display);
+            font-size: 1.5rem;
+            color: var(--navy-900);
+            margin-bottom: 0.25rem;
+        }
+
+        .team-card__role {
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--yellow);
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.75rem;
+        }
+
+        .team-card__role::before {
+            content: '';
+            display: block;
+            width: 20px;
+            height: 2px;
+            background: var(--yellow);
+        }
+
+        .team-card__bio {
+            font-size: 0.9rem;
+            color: var(--slate-400);
+            line-height: 1.75;
+            margin-bottom: 1rem;
+        }
+
+        .team-card__linkedin {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--navy-700);
+            transition: color 0.3s ease;
+        }
+
+        .team-card__linkedin:hover {
+            color: var(--yellow);
+        }
+
+        .team-card__linkedin svg {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* ============================================
+           CONTACT
+           ============================================ */
+        .contact {
+            background: linear-gradient(135deg, var(--navy-900) 0%, var(--navy-800) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact__texture {
+            position: absolute;
+            inset: 0;
+            opacity: 0.05;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='28' height='49' viewBox='0 0 28 49'%3E%3Cg fill-rule='evenodd'%3E%3Cg fill='%23fed136' fill-opacity='1'%3E%3Cpath d='M13.99 9.25l13 7.5v15l-13 7.5L1 31.75v-15l12.99-7.5zM3 17.9v12.7l10.99 6.34 11-6.35V17.9l-11-6.34L3 17.9zM0 15l12.98-7.5V0h-2v6.35L0 12.69v2.3zm0 18.5L12.98 41v8h-2v-6.85L0 35.81v-2.3zM15 0v7.5L27.99 15H28v-2.31h-.01L17 6.35V0h-2zm0 49v-8l12.99-7.5H28v2.31h-.01L17 42.15V49h-2z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+
+        .contact .section__heading {
+            color: var(--white);
+        }
+
+        .contact .section__sub {
+            color: var(--slate-400);
+            margin-bottom: 2.5rem;
+        }
+
+        .contact__inner {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 3rem;
+        }
+
+        .contact__cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--yellow);
+            color: var(--navy-900);
+            font-weight: 700;
+            font-size: 0.95rem;
+            letter-spacing: 0.04em;
+            padding: 1.1rem 2.5rem;
+            border: none;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .contact__cta:hover {
+            background: var(--white);
+            box-shadow: 0 8px 30px rgba(254, 209, 54, 0.25);
+            transform: translateY(-2px);
+        }
+
+        .contact__cta svg {
+            width: 20px;
+            height: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact__cta:hover svg {
+            transform: translateX(4px);
+        }
+
+        /* ============================================
+           FOOTER
+           ============================================ */
+        .footer {
+            background: var(--navy-900);
+            border-top: 1px solid rgba(254, 209, 54, 0.08);
+            padding: 2rem;
+        }
+
+        .footer__inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .footer__copy {
+            font-size: 0.8rem;
+            color: var(--slate-400);
+        }
+
+        .footer__brand {
+            font-family: var(--font-display);
+            font-size: 1rem;
+            color: var(--white);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer__logo {
+            width: 26px;
+            height: 26px;
+            background: var(--yellow);
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .footer__logo span {
+            font-family: var(--font-body);
+            font-size: 0.55rem;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            color: var(--navy-900);
+            line-height: 1;
+        }
+
+        /* ============================================
+           MOBILE RESPONSIVE
+           ============================================ */
+        @media (max-width: 1024px) {
+            .services__grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .team__grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .nav__links {
+                display: none;
+                position: absolute;
+                top: 72px;
+                left: 0;
+                right: 0;
+                background: rgba(10, 22, 40, 0.98);
+                flex-direction: column;
+                padding: 1.5rem 2rem;
+                gap: 1.25rem;
+                border-bottom: 1px solid rgba(254, 209, 54, 0.1);
+            }
+
+            .nav__links.open {
+                display: flex;
+            }
+
+            .nav__toggle {
+                display: flex;
+            }
+
+            .hero__heading {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .section {
+                padding: 5rem 1.5rem;
+            }
+
+            .team-card {
+                grid-template-columns: 1fr;
+                justify-items: center;
+                text-align: center;
+            }
+
+            .team-card__photo-wrap::before {
+                top: -6px;
+                left: -6px;
+                right: 6px;
+                bottom: 6px;
+            }
+
+            .team-card__role::before {
+                display: none;
+            }
+
+            .team-card__photo {
+                width: 180px;
+                height: 200px;
+            }
+
+            .contact__inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .contact .section__sub {
+                margin-left: auto;
+                margin-right: auto;
+            }
+
+            .footer__inner {
+                flex-direction: column;
+                gap: 0.75rem;
+                text-align: center;
+            }
+
+            .hero__hex {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .hero {
+                min-height: 90vh;
+            }
+
+            .hero__content {
+                padding-top: 90px;
+            }
+
+            .service-card {
+                padding: 2rem 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ============================================
+         NAVIGATION
+         ============================================ -->
+    <nav class="nav" id="nav">
+        <div class="nav__inner">
+            <a href="#page-top" class="nav__brand"><div class="nav__logo"><span>AHA</span></div> Bioconsultants</a>
+            <ul class="nav__links" id="navLinks">
+                <li><a href="#services">Services</a></li>
+                <li><a href="#team">Team</a></li>
+                <li><a href="#contact" class="nav__cta">Contact Us</a></li>
+            </ul>
+            <button class="nav__toggle" id="navToggle" aria-label="Toggle navigation">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         HERO
+         ============================================ -->
+    <header class="hero" id="page-top">
+        <div class="hero__texture"></div>
+        <div class="hero__hex hero__hex--1"></div>
+        <div class="hero__hex hero__hex--2"></div>
+        <div class="hero__hex hero__hex--3"></div>
+        <div class="hero__glow"></div>
+        <div class="hero__content">
+            <div class="hero__label">Biologics Consulting</div>
+            <h1 class="hero__heading">From cells<br>to <em>sales.</em></h1>
+            <p class="hero__sub">Strategic consulting in biologics process development, CMC strategy, and manufacturing operations — backed by 50+ years of combined industry expertise.</p>
+            <div class="hero__buttons">
+                <a href="#services" class="hero__cta">
+                    Our Services
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+                </a>
+                <a href="#contact" class="hero__cta--secondary">Contact Us</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Lab Image Banner -->
+    <div class="hero-banner">
+        <img src="./img/header-bg.jpg" alt="Biologics laboratory equipment" loading="eager">
+    </div>
+
+    <!-- ============================================
+         SERVICES
+         ============================================ -->
+    <section class="section services" id="services">
+        <div class="section__inner">
+            <div class="services__header animate-on-scroll">
+                <h2 class="section__heading">Expert Guidance Across<br>the Biologics Lifecycle</h2>
+                <p class="section__sub">Our consulting services are founded in 50+ years of industry experience in biologic processes.</p>
+            </div>
+            <div class="services__grid">
+                <div class="service-card animate-on-scroll">
+
+                    <div class="service-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6l3 7-6 11-6-11z"/><path d="M12 21V10"/></svg>
+                    </div>
+                    <h3 class="service-card__title">Process Technology Development</h3>
+                    <p class="service-card__text">Services to develop biologic processes, including fermentation, cell culture and protein purification. Expertise in process technology transfer and scale-up manufacturing.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+
+                    <div class="service-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 2v7.527a2 2 0 0 1-.211.896L4.72 20.55a1 1 0 0 0 .9 1.45h12.76a1 1 0 0 0 .9-1.45l-5.069-10.127A2 2 0 0 1 14 9.527V2"/><path d="M8.5 2h7"/><path d="M7 16h10"/></svg>
+                    </div>
+                    <h3 class="service-card__title">CMC Development Strategy</h3>
+                    <p class="service-card__text">Strategic planning to bring biomolecules from research phase to regulatory submissions, with specific experience in monoclonal antibodies.</p>
+                </div>
+                <div class="service-card animate-on-scroll">
+
+                    <div class="service-card__icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                    </div>
+                    <h3 class="service-card__title">Manufacturing Operations</h3>
+                    <p class="service-card__text">Implement lean manufacturing practices for cycle time and waste reduction. Continuous improvement with process monitoring and statistical analysis.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         TEAM
+         ============================================ -->
+    <section class="section team" id="team">
+        <div class="section__inner">
+            <div class="team__header animate-on-scroll">
+                <h2 class="section__heading">Our Team</h2>
+            </div>
+            <div class="team__grid">
+                <div class="team-card animate-on-scroll">
+                    <div class="team-card__photo-wrap">
+                        <img src="./AHA Bioconsultants_files/1.jpg" alt="Alahari Arunakumari, PhD" class="team-card__photo">
+                    </div>
+                    <div>
+                        <h3 class="team-card__name">Alahari Arunakumari, PhD</h3>
+                        <div class="team-card__role">President</div>
+                        <p class="team-card__bio">Dr. Alahari Arunakumari (Aruna) is an experienced Biologics Process Development professional with expertise in microbial and mammalian production systems through a progressive biopharmaceutical industry career spanning 18+ years at Medarex, Bristol Myers Squibb and Enzon. Aruna has provided strategic, managerial and technical leadership in Biologics process and product development, especially for the production of Ipilimumab, the anti-CTLA4 human monoclonal antibody and more than 14 other protein therapeutics that have resulted in 10+ INDs across various phases of clinical trials. She holds seven patents and three patent applications in cell culture and Mab purification processes.</p>
+                        <a href="https://www.linkedin.com/in/arunakumari-alahari-phd-083aa74/" target="_blank" rel="noopener noreferrer" class="team-card__linkedin">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+                <div class="team-card animate-on-scroll">
+                    <div class="team-card__photo-wrap">
+                        <img src="./AHA Bioconsultants_files/2.jpg" alt="Ganapathy Muthukumar, PhD" class="team-card__photo">
+                    </div>
+                    <div>
+                        <h3 class="team-card__name">Ganapathy Muthukumar, PhD</h3>
+                        <div class="team-card__role">Vice-President</div>
+                        <p class="team-card__bio">Dr. Ganapathy Muthukumar (Kumar) is a global operations executive who has applied his knowledge and expertise to build companies and increase shareholder values across Biologics, Medical Devices and Research Products markets. Kumar has developed and optimized processes for several biological and medical device companies and designed state-of-the-art facilities for commercial manufacturing. He has managed a portfolio of 150+ products with annual revenue of $150MM+, executing technical transfers, quality management, and regulatory interactions. Kumar holds certifications as a Regulatory Affairs Professional (RAC/RAPS), Quality Manager/Operational Excellence (ASQ), Six Sigma Black Belt (ASQ), and Pharmaceutical GMP Professional (ASQ), with 30+ publications in peer-reviewed journals and one patent in protein purification.</p>
+                        <a href="https://www.linkedin.com/in/ganapathy-muthukumar-576a6b1/" target="_blank" rel="noopener noreferrer" class="team-card__linkedin">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                            LinkedIn
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         CONTACT
+         ============================================ -->
+    <section class="section contact" id="contact">
+        <div class="contact__texture"></div>
+        <div class="section__inner">
+            <div class="contact__inner">
+                <div>
+                    <div class="section__label">Get In Touch</div>
+                    <h2 class="section__heading">Let's Discuss Your<br>Next Project</h2>
+                    <p class="section__sub">Whether you need process development guidance, CMC strategy, or manufacturing optimization — we're ready to help.</p>
+                </div>
+                <a href="mailto:aruna@ahabio.com" class="contact__cta">
+                    Email Us
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         FOOTER
+         ============================================ -->
+    <footer class="footer">
+        <div class="footer__inner">
+            <div class="footer__brand"><div class="footer__logo"><span>AHA</span></div> Bioconsultants</div>
+            <div class="footer__copy">AHA Bioconsultants LLC &copy; 2026</div>
+        </div>
+    </footer>
+
+    <!-- ============================================
+         SCRIPTS
+         ============================================ -->
+    <script>
+        // Mobile nav toggle
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('open');
+        });
+
+        // Close mobile nav on link click
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('open');
+            });
+        });
+
+        // Nav scroll effect
+        const nav = document.getElementById('nav');
+        window.addEventListener('scroll', () => {
+            nav.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Scroll-triggered animations — only activate if IntersectionObserver works
+        const animEls = document.querySelectorAll('.animate-on-scroll');
+
+        if ('IntersectionObserver' in window) {
+            document.body.classList.add('js-animate');
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (entry.isIntersecting) {
+                        const siblings = entry.target.parentElement.querySelectorAll('.animate-on-scroll');
+                        const index = Array.from(siblings).indexOf(entry.target);
+                        entry.target.style.transitionDelay = `${index * 0.15}s`;
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.05, rootMargin: '0px 0px -30px 0px' });
+
+            animEls.forEach(el => observer.observe(el));
+        }
+    </script>
+
+</body>
+</html>

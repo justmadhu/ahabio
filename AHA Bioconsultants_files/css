@@ -1,0 +1,33 @@
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 400;
+  src: url(https://web.archive.org/web/20240601125204im_/https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCtr6Hw5aX8.ttf) format('truetype');
+}
+@font-face {
+  font-family: 'Montserrat';
+  font-style: normal;
+  font-weight: 700;
+  src: url(https://web.archive.org/web/20240601125204im_/https://fonts.gstatic.com/s/montserrat/v26/JTUHjIg1_i6t8kCHKm4532VJOt5-QNFgpCuM73w5aX8.ttf) format('truetype');
+}
+
+/*
+     FILE ARCHIVED ON 12:52:04 Jun 01, 2024 AND RETRIEVED FROM THE
+     INTERNET ARCHIVE ON 17:58:27 Mar 19, 2026.
+     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
+
+     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
+     SECTION 108(a)(3)).
+*/
+/*
+playback timings (ms):
+  captures_list: 0.597
+  exclusion.robots: 0.018
+  exclusion.robots.policy: 0.008
+  esindex: 0.009
+  cdx.remote: 5.778
+  LoadShardBlock: 223.251 (6)
+  PetaboxLoader3.datanode: 173.346 (7)
+  load_resource: 698.624
+  PetaboxLoader3.resolve: 652.138
+*/
